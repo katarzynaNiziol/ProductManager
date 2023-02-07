@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<span style='font-size:100px;'>&#127973;</span>
+<head>
+<style>
+table {
+  border-collapse: collapse;
+  width: 60%;
+}
+th, td {
+  text-align: center;
+  padding: 3px;
+}
+tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
+</style>
+    <meta charset="UTF-8">
+    <title>NURSE SERVICES</title>
+</head>
+<body>
+<div align="center">
+    <h1><b>NURSE SERVICES</b></h1>
+    <a href="new"><strong>Create new service</strong></a>
+    <br>
+    <br/>
+    <table class="table table-bordered table-striped" border="1px solid white" cellpadding="15">
+        <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Time</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${listProducts}">
+            <td th:text="${product.id}">Product ID</td>
+            <td th:text="${product.name}">Name</td>
+            <td th:text="${product.brand}">Brand</td>
+            <td th:text="${product.time}">Time</td>
+            <td th:text="${product.price}">Price</td>
+            <td>
+                <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
+                &nbsp;
+                &nbsp;
+                <a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
