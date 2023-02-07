@@ -7,6 +7,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 
+import java.util.Optional;
+
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
@@ -37,4 +39,36 @@ public class ProductRepositoryTest {
             System.out.println(product);
         }
     }
-}
+    @Test
+    public void testUpdate() {
+        Integer productId = 13;
+        Optional<Product> optionalProduct = repo.findById(productId);
+        Product product = optionalProduct.get();
+
+        product.setPrice(120);
+        repo.save(product);
+
+        Product updateProduct = repo.findById(productId).get();
+        Assertions.assertThat(updateProduct.getPrice()).isEqualTo(120);
+
+    }
+        @Test
+        public void testGet() {
+            Integer productId = 12;
+            Optional<Product> optionalProduct = repo.findById(productId);
+            Assertions.assertThat(optionalProduct).isPresent();
+            System.out.println(optionalProduct.get());
+        }
+
+        @Test
+        public void testDelete() {
+            Integer productId = 17;
+            repo.deleteById(productId);
+
+            Optional<Product> optionalProduct = repo.findById(productId);
+            Assertions.assertThat(optionalProduct).isNotPresent();
+
+
+        }
+    }
+

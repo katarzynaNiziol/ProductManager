@@ -9,7 +9,7 @@
   <h1>Edit service</h1>
   <br/>
   <form action="#" th:action="@{/save}" th:object="${product}"  method="post">
-    <table border-style="solid" class="table table-bordered table-striped" border="1px solid white" border-collapse="collapse" cellpadding="15" >
+    <table style="solid; background-color:#D6EEEE;" class="table table-bordered table-striped" border="1px solid white collapse" cellpadding="15">
       <tr>
         <td>Service ID:</td>
         <td><input type="text" th:field="*{id}" readonly="readonly" /></td>
